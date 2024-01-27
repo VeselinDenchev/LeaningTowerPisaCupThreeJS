@@ -1,0 +1,12 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrollbars */
+    height: 100%;
+    width: 100%;
+}
+canvas {
+    display: block; /* Removes default canvas margin */
+    width: 100%;
+    height: 100%;
+}
