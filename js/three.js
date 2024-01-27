@@ -36,7 +36,6 @@ mtlLoader.load('3d-models/leaning-tower-of-pisa-cup/3DModel.mtl', (materials) =>
     objLoader.setMaterials(materials);
     objLoader.load('3d-models/leaning-tower-of-pisa-cup/3DModel.obj', (object) => {
         scene.add(object);
-        console.log('add object');
     }, (xhr) => {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     }, (error) => {
