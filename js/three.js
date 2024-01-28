@@ -28,6 +28,8 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Increase th
 directionalLight.position.set(0, 1, 0);
 scene.add(directionalLight);
 
+const loadingHeading = document.getElementById('loading-heading');
+
 // Material and Object Loader
 const mtlLoader = new MTLLoader();
 mtlLoader.load('3d-models/leaning-tower-of-pisa-cup/3DModel.mtl', (materials) => {
@@ -37,7 +39,14 @@ mtlLoader.load('3d-models/leaning-tower-of-pisa-cup/3DModel.mtl', (materials) =>
     objLoader.load('3d-models/leaning-tower-of-pisa-cup/3DModel.obj', (object) => {
         scene.add(object);
     }, (xhr) => {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        const loadedPercentage = Math.round(xhr.loaded / xhr.total * 100);
+        const loadingText = 'Loading... ' + (loadedPercentage) + '%';
+        loadingHeading.innerHTML = loadingText;
+
+        const isLoaded = xhr.loaded === xhr.total;
+        if (!isLoaded) return;
+
+        loadingHeading.remove();
     }, (error) => {
         console.error('An error happened', error);
     });
